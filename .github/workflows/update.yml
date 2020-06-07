@@ -1,0 +1,28 @@
+name: Auto Update
+
+on:
+  schedule:
+    - cron:  '*/20 * * * *'
+
+jobs:
+  update:
+    name: Update Data
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout Repo
+        uses: actions/checkout@v2
+        with:
+          fetch-depth: 0
+
+      - name: Update data
+        run: ./check.sh
+  
+      - name: Commit & Push data
+        run: |
+          if git diff data/*.csv | grep . > /dev/null ; then
+            git config --local user.email "action@github.com"
+            git config --local user.name "GitHub Action"
+            git commit -m "update data" data/versions.csv
+            git push
+          fi
