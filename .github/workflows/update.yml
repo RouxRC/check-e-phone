@@ -20,7 +20,7 @@ jobs:
   
       - name: Commit & Push data
         run: |
-          if git diff data/*.csv | grep . > /dev/null ; then
+          if git diff data/versions.csv | grep . > /dev/null && test -s data/versions.csv; then
             git config --local user.email "action@github.com"
             git config --local user.name "GitHub Action"
             git commit -m "update data" data/versions.csv
