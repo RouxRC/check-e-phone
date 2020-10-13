@@ -1,7 +1,7 @@
 color,in_stock,price,quantity
 blue,False,269.9,0
 white,False,269.9,0
-gold,True,269.9,7
+gold,True,269.9,6
 blue,True,269.9,1
 pink,False,269.9,0
 silver,False,269.9,0
